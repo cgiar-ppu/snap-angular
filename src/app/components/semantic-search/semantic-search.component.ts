@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+  standalone: false,
   selector: 'app-semantic-search',
   templateUrl: './semantic-search.component.html',
   styleUrls: ['./semantic-search.component.css']

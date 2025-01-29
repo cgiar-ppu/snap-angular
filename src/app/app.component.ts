@@ -6,8 +6,7 @@ import { AppModule } from './app.module';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  standalone: true,
-  imports: [AppModule]
+  standalone: false,
 })
 export class AppComponent {
   title = 'my-angular-app';

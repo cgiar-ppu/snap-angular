@@ -12,22 +12,24 @@ import { SemanticSearchComponent } from './components/semantic-search/semantic-s
 import { DataService } from './services/data.service';
 import { SemanticSearchService } from './services/semantic-search.service';
 
+// app.module.ts
 @NgModule({
   declarations: [
+    AppComponent,              // <--- ADD THESE
+    DatasetUploadComponent,
+    SemanticSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    AppComponent,
-    DatasetUploadComponent,
-    SemanticSearchComponent
+    FormsModule
   ],
   providers: [
     DataService,
     SemanticSearchService
   ],
-  bootstrap: []
+  bootstrap: [AppComponent]    // <--- ADD THIS
 })
-export class AppModule { }
+export class AppModule {}
+

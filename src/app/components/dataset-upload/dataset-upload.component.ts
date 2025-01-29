@@ -9,8 +9,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-dataset-upload',
   templateUrl: './dataset-upload.component.html',
   styleUrls: ['./dataset-upload.component.css'],
-  standalone: true,
-  imports: [CommonModule, FormsModule]
+  standalone: false,
 })
 export class DatasetUploadComponent {
   selectedFile: File | null = null;
