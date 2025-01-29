@@ -1,0 +1,21 @@
+<div>
+  <h2>Dataset Upload</h2>
+
+  <p *ngIf="errorMessage" style="color:red;">
+    {{ errorMessage }}
+  </p>
+
+  <div>
+    <button (click)="selectDefault()">Use Default Dataset</button>
+    <p>— or —</p>
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="uploadFile()">Upload File</button>
+  </div>
+
+  <div *ngIf="datasetInfo">
+    <h3>Dataset Info</h3>
+    <p><strong>ID:</strong> {{ datasetInfo.dataset_id }}</p>
+    <p><strong>Columns:</strong> {{ datasetInfo.columns.join(', ') }}</p>
+    <p><strong>Row count:</strong> {{ datasetInfo.row_count }}</p>
+  </div>
+</div>

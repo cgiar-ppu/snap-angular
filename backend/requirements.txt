@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pandas
+openpyxl
+numpy
+sentence_transformers
+scikit-learn
+python-multipart

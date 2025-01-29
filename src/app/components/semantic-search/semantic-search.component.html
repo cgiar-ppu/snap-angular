@@ -1,0 +1,59 @@
+<div>
+  <h2>Semantic Search</h2>
+
+  <div style="margin-bottom: 1em;">
+    <label>Dataset ID:</label>
+    <input type="text" [(ngModel)]="datasetId" placeholder="e.g. default_dataset or uploaded_2025..." />
+  </div>
+
+  <div style="margin-bottom: 1em;">
+    <label>Text Columns (comma-separated):</label>
+    <input type="text" [(ngModel)]="columnsInput" placeholder="e.g. Title,Description" />
+    <button (click)="computeEmbeddings()">Compute Embeddings</button>
+    <p style="color:blue;">{{ embeddingsMessage }}</p>
+    <p style="color:red;">{{ embeddingsError }}</p>
+  </div>
+
+  <hr/>
+
+  <div style="margin-bottom: 1em;">
+    <label>Search Query:</label>
+    <input type="text" [(ngModel)]="query" placeholder="Enter query..." />
+  </div>
+
+  <div style="margin-bottom: 1em;">
+    <label>Negative Keywords:</label>
+    <input type="text" [(ngModel)]="negativeKeywords" placeholder="comma-separated" />
+  </div>
+
+  <div style="margin-bottom: 1em;">
+    <label>Required Keywords:</label>
+    <input type="text" [(ngModel)]="includeKeywords" placeholder="comma-separated" />
+  </div>
+
+  <div style="margin-bottom: 1em;">
+    <label>Threshold (0-1):</label>
+    <input type="number" [(ngModel)]="threshold" step="0.01" min="0" max="1" />
+  </div>
+
+  <button (click)="runSearch()">Search</button>
+  <p style="color:red;">{{ searchError }}</p>
+
+  <hr/>
+
+  <h3>Results ({{ searchCount }})</h3>
+  <button (click)="downloadResults()" *ngIf="searchResults.length > 0">Download CSV</button>
+
+  <table *ngIf="searchResults.length > 0" border="1" style="border-collapse: collapse; margin-top: 1em;">
+    <thead>
+      <tr>
+        <th *ngFor="let col of getResultColumns()">{{ col }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of searchResults">
+        <td *ngFor="let col of getResultColumns()">{{ row[col] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
