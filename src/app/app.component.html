@@ -3,5 +3,12 @@
     <p>This is a semantic search engine for your documents.</p>
   </header>
   
-  <!-- The router will load the correct component here -->
+  <nav style="margin-bottom: 1rem;">
+    <!-- Just simple links to switch routes -->
+    <a routerLink="/upload" routerLinkActive="active-link">Upload Dataset</a> |
+    <a routerLink="/search" routerLinkActive="active-link">Semantic Search</a>
+  </nav>
+  
+  <!-- IMPORTANT: The child routes appear here -->
+  <router-outlet></router-outlet>
   
