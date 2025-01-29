@@ -16,6 +16,9 @@ import { SemanticSearchComponent } from './components/semantic-search/semantic-s
 import { DataService } from './services/data.service';
 import { SemanticSearchService } from './services/semantic-search.service';
 
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+
 @NgModule({
   declarations: [
     AppComponent,            // declare the root
@@ -26,7 +29,9 @@ import { SemanticSearchService } from './services/semantic-search.service';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ButtonModule,
+    InputTextModule
   ],
   providers: [
     DataService,

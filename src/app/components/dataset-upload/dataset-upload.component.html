@@ -6,7 +6,7 @@
   </p>
 
   <div>
-    <button (click)="selectDefault()">Use Default Dataset</button>
+    <button pButton type="button" label="Use Default Dataset" class="p-button-raised p-button-primary"></button>
     <p>— or —</p>
     <input type="file" (change)="onFileSelected($event)" />
     <button (click)="uploadFile()">Upload File</button>
