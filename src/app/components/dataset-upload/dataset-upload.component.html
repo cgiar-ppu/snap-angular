@@ -1,38 +1,71 @@
-<div class="p-m-3"> <!-- Add some margin if using primeflex or your own CSS class -->
-  <h2>Dataset Upload</h2>
+<div class="grid">
+  <div class="col-12">
+    <div class="flex flex-column align-items-center gap-3 mb-4">
+      <button
+        pButton
+        type="button"
+        label="Use Default Dataset"
+        class="p-button-raised p-button-primary"
+        pTooltip="Click to automatically load the default dataset"
+        (click)="selectDefault()"
+      ></button>
+      <span class="text-500">— or —</span>
+    </div>
 
-  <p *ngIf="errorMessage" class="p-error">{{ errorMessage }}</p>
+    <!-- File Upload Section -->
+    <div class="flex flex-column gap-3">
+      <div class="p-inputgroup justify-content-center">
+        <input type="file" class="hidden" #fileInput (change)="onFileSelected($event)" />
+        <button 
+          pButton 
+          type="button" 
+          label="Choose File" 
+          icon="pi pi-file" 
+          (click)="fileInput.click()"
+          class="p-button-secondary"
+        ></button>
+        <input 
+          type="text" 
+          pInputText 
+          [value]="fileInput.files?.[0]?.name || 'No file chosen'" 
+          readonly
+          class="w-full md:w-30rem"
+        />
+      </div>
 
-  <div class="p-d-flex p-ai-center p-mb-2"> 
-    <button
-      pButton
-      type="button"
-      label="Use Default Dataset"
-      class="p-button-raised p-button-primary p-mr-2"
-      pTooltip="Click to automatically load the default dataset"
-      (click)="selectDefault()"
-    ></button>
-    <span>— or —</span>
-  </div>
+      <div class="flex justify-content-center">
+        <button
+          pButton
+          label="Upload File"
+          icon="pi pi-upload"
+          (click)="uploadFile()"
+          class="p-button-raised"
+        ></button>
+      </div>
+    </div>
 
-  <div class="p-field p-mb-2">
-    <input type="file" (change)="onFileSelected($event)" />
-  </div>
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="p-error text-center mt-3">
+      {{ errorMessage }}
+    </div>
 
-  <div class="p-mb-2">
-    <button
-      pButton
-      label="Upload File"
-      class="p-button-raised p-button-primary"
-      icon="pi pi-upload"
-      (click)="uploadFile()"
-    ></button>
-  </div>
-
-  <div *ngIf="datasetInfo" class="p-mt-3">
-    <h3>Dataset Info</h3>
-    <p><strong>ID:</strong> {{ datasetInfo.dataset_id }}</p>
-    <p><strong>Columns:</strong> {{ datasetInfo.columns.join(', ') }}</p>
-    <p><strong>Row count:</strong> {{ datasetInfo.row_count }}</p>
+    <!-- Dataset Info -->
+    <div *ngIf="datasetInfo" class="surface-card p-4 border-round mt-4">
+      <h3 class="text-center mb-4">Dataset Information</h3>
+      <div class="grid">
+        <div class="col-12 md:col-4">
+          <div class="text-500 mb-2">Dataset ID</div>
+          <div class="text-900 font-medium">{{ datasetInfo.dataset_id }}</div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div class="text-500 mb-2">Columns</div>
+          <div class="text-900 font-medium">{{ datasetInfo.columns.join(', ') }}</div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div class="text-500 mb-2">Row Count</div>
+          <div class="text-900 font-medium">{{ datasetInfo.row_count }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
