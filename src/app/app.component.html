@@ -1,26 +1,38 @@
-<header class="p-m-3">
-    <h1>{{ title }}</h1>
-    <p>This is a semantic search engine for your documents.</p>
-  </header>
-  
-  <nav class="p-m-3">
-    <!-- Use pButton with routerLink -->
-    <button
-      pButton
-      label="Upload Dataset"
-      class="p-button-rounded p-button-text p-mr-2"
-      routerLink="/upload"
-      routerLinkActive="p-button-outlined"
-    ></button>
-  
-    <button
-      pButton
-      label="Semantic Search"
-      class="p-button-rounded p-button-text"
-      routerLink="/search"
-      routerLinkActive="p-button-outlined"
-    ></button>
-  </nav>
-  
-  <!-- Child routes here -->
-  <router-outlet></router-outlet>  
+<div class="surface-ground min-h-screen">
+  <div class="grid">
+    <!-- Center content with responsive margins -->
+    <div class="col-12 md:col-10 md:col-offset-1 lg:col-8 lg:col-offset-2">
+      
+      <!-- Header Section -->
+      <header class="text-center p-4">
+        <h1 class="text-900 font-bold text-4xl mb-2">{{ title }}</h1>
+        <p class="text-600 line-height-3">This is a semantic search engine for your documents.</p>
+      </header>
+      
+      <!-- Navigation Section -->
+      <nav class="flex justify-content-center align-items-center gap-3 p-4">
+        <button
+          pButton
+          label="Upload Dataset"
+          class="p-button-rounded p-button-text"
+          routerLink="/upload"
+          routerLinkActive="p-button-outlined"
+        ></button>
+      
+        <button
+          pButton
+          label="Semantic Search"
+          class="p-button-rounded p-button-text"
+          routerLink="/search"
+          routerLinkActive="p-button-outlined"
+        ></button>
+      </nav>
+      
+      <!-- Main Content Area -->
+      <div class="surface-card p-4 border-round shadow-2">
+        <router-outlet></router-outlet>
+      </div>
+      
+    </div>
+  </div>
+</div>  

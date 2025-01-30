@@ -22,6 +22,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { MenubarModule } from 'primeng/menubar';  // if you plan to use a menubar
 import { TableModule } from 'primeng/table';
 import { KnobModule } from 'primeng/knob';
+import { RippleModule } from 'primeng/ripple';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { KnobModule } from 'primeng/knob';
     TooltipModule,
     MenubarModule,
     TableModule,
-    KnobModule
+    KnobModule,
+    RippleModule
   ],
   providers: [
     DataService,
