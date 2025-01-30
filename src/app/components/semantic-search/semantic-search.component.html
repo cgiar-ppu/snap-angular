@@ -1,59 +1,139 @@
-<div>
+<div class="p-m-3">
   <h2>Semantic Search</h2>
 
-  <div style="margin-bottom: 1em;">
-    <label>Dataset ID:</label>
-    <input type="text" [(ngModel)]="datasetId" placeholder="e.g. default_dataset or uploaded_2025..." />
+  <!-- Dataset ID -->
+  <div class="p-field p-mb-3">
+    <label for="datasetId" class="p-d-block">Dataset ID:</label>
+    <input
+      id="datasetId"
+      pInputText
+      [(ngModel)]="datasetId"
+      placeholder="e.g. default_dataset"
+      class="p-d-block"
+    />
   </div>
 
-  <div style="margin-bottom: 1em;">
-    <label>Text Columns (comma-separated):</label>
-    <input type="text" [(ngModel)]="columnsInput" placeholder="e.g. Title,Description" />
-    <button (click)="computeEmbeddings()">Compute Embeddings</button>
-    <p style="color:blue;">{{ embeddingsMessage }}</p>
-    <p style="color:red;">{{ embeddingsError }}</p>
+  <!-- Text Columns -->
+  <div class="p-field p-mb-3">
+    <label for="textColumns" class="p-d-block">Text Columns (comma-separated):</label>
+    <input
+      id="textColumns"
+      pInputText
+      [(ngModel)]="columnsInput"
+      placeholder="Title,Description"
+      class="p-d-block"
+    />
+    <button
+      pButton
+      label="Compute Embeddings"
+      icon="pi pi-cog"
+      (click)="computeEmbeddings()"
+      class="p-button-sm p-mt-2"
+      pTooltip="Extract embeddings for the specified columns"
+    ></button>
+    <p class="p-text-secondary">{{ embeddingsMessage }}</p>
+    <p class="p-error">{{ embeddingsError }}</p>
   </div>
 
-  <hr/>
+  <hr />
 
-  <div style="margin-bottom: 1em;">
-    <label>Search Query:</label>
-    <input type="text" [(ngModel)]="query" placeholder="Enter query..." />
+  <!-- Query Field -->
+  <div class="p-field p-mb-3">
+    <label for="searchQuery" class="p-d-block">Search Query:</label>
+    <input
+      id="searchQuery"
+      pInputText
+      [(ngModel)]="query"
+      placeholder="Enter query..."
+      class="p-d-block"
+    />
   </div>
 
-  <div style="margin-bottom: 1em;">
-    <label>Negative Keywords:</label>
-    <input type="text" [(ngModel)]="negativeKeywords" placeholder="comma-separated" />
+  <!-- Negative Keywords -->
+  <div class="p-field p-mb-3">
+    <label for="negativeKeywords" class="p-d-block">Negative Keywords:</label>
+    <input
+      id="negativeKeywords"
+      pInputText
+      [(ngModel)]="negativeKeywords"
+      placeholder="comma-separated"
+      class="p-d-block"
+    />
   </div>
 
-  <div style="margin-bottom: 1em;">
-    <label>Required Keywords:</label>
-    <input type="text" [(ngModel)]="includeKeywords" placeholder="comma-separated" />
+  <!-- Required Keywords -->
+  <div class="p-field p-mb-3">
+    <label for="includeKeywords" class="p-d-block">Required Keywords:</label>
+    <input
+      id="includeKeywords"
+      pInputText
+      [(ngModel)]="includeKeywords"
+      placeholder="comma-separated"
+      class="p-d-block"
+    />
   </div>
 
-  <div style="margin-bottom: 1em;">
-    <label>Threshold (0-1):</label>
-    <input type="number" [(ngModel)]="threshold" step="0.01" min="0" max="1" />
+  <!-- Threshold -->
+  <div class="p-field p-mb-3">
+    <label for="threshold" class="p-d-block">Threshold (0-1):</label>
+    <p-knob
+      [(ngModel)]="threshold"
+      [min]="0"
+      [max]="1"
+      [step]="0.01"
+      [valueColor]="'#42A5F5'"
+      [rangeColor]="'#E0E0E0'"
+    ></p-knob>
+  
+    <!-- (Optional) keep the numeric input as well, if you want both -->
+    <input
+      id="threshold"
+      type="number"
+      pInputText
+      [(ngModel)]="threshold"
+      step="0.01"
+      min="0"
+      max="1"
+      class="p-d-block"
+    />
   </div>
+  
 
-  <button (click)="runSearch()">Search</button>
-  <p style="color:red;">{{ searchError }}</p>
+  <button
+    pButton
+    label="Search"
+    icon="pi pi-search"
+    (click)="runSearch()"
+    class="p-button-raised p-button-primary p-mr-2"
+  ></button>
+  <p class="p-error">{{ searchError }}</p>
 
-  <hr/>
+  <hr />
 
   <h3>Results ({{ searchCount }})</h3>
-  <button (click)="downloadResults()" *ngIf="searchResults.length > 0">Download CSV</button>
-
-  <table *ngIf="searchResults.length > 0" border="1" style="border-collapse: collapse; margin-top: 1em;">
-    <thead>
-      <tr>
-        <th *ngFor="let col of getResultColumns()">{{ col }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of searchResults">
-        <td *ngFor="let col of getResultColumns()">{{ row[col] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <button
+    pButton
+    label="Download CSV"
+    icon="pi pi-download"
+    (click)="downloadResults()"
+    class="p-button-raised p-button-primary p-mb-2"
+    *ngIf="searchResults.length > 0"
+  ></button>
+  <!-- You could also switch to a <p-table> if you want a nicer data table -->
+  <p-table [value]="searchResults" *ngIf="searchResults.length > 0">
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let col of getResultColumns()">
+                {{ col }}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+        <tr>
+            <td *ngFor="let col of getResultColumns()">
+                {{ row[col] }}
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
 </div>

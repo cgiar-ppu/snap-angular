@@ -1,14 +1,26 @@
-<header>
+<header class="p-m-3">
     <h1>{{ title }}</h1>
     <p>This is a semantic search engine for your documents.</p>
   </header>
   
-  <nav style="margin-bottom: 1rem;">
-    <!-- Just simple links to switch routes -->
-    <a routerLink="/upload" routerLinkActive="active-link">Upload Dataset</a> |
-    <a routerLink="/search" routerLinkActive="active-link">Semantic Search</a>
+  <nav class="p-m-3">
+    <!-- Use pButton with routerLink -->
+    <button
+      pButton
+      label="Upload Dataset"
+      class="p-button-rounded p-button-text p-mr-2"
+      routerLink="/upload"
+      routerLinkActive="p-button-outlined"
+    ></button>
+  
+    <button
+      pButton
+      label="Semantic Search"
+      class="p-button-rounded p-button-text"
+      routerLink="/search"
+      routerLinkActive="p-button-outlined"
+    ></button>
   </nav>
   
-  <!-- IMPORTANT: The child routes appear here -->
-  <router-outlet></router-outlet>
-  
+  <!-- Child routes here -->
+  <router-outlet></router-outlet>  

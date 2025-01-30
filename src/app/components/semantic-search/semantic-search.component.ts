@@ -3,6 +3,8 @@ import { SemanticSearchService } from '../../services/semantic-search.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { TableModule } from 'primeng/table';
+import { KnobModule } from 'primeng/knob';
 
 @Component({
   standalone: false,
